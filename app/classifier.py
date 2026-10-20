@@ -18,6 +18,7 @@ def get_model():
     global _model
     if _model is None:
         df = pd.read_csv(DATA_PATH)
+        df = df.dropna(subset=["prompt_text", "category"])
         _model = Pipeline([
             ("tfidf", TfidfVectorizer(ngram_range=(1, 2))),
             ("clf", LogisticRegression(max_iter=1000)),
