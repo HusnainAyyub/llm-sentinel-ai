@@ -1,8 +1,8 @@
 """Scikit-learn text classifier for prompt categories.
 
-Trains a small TF-IDF + Logistic Regression model on the sample
-dataset in data/sample_prompts.csv. In the full project this is
-replaced by the 2,000 prompt dataset described in data/README.md.
+Trains a small TF-IDF + Logistic Regression model on the starter
+dataset in data/prompts_starter_v1.csv (32 team written rows).
+The dataset grows toward the 2,000 prompt target in data/README.md.
 """
 import os
 import pandas as pd
@@ -10,7 +10,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
 from sklearn.pipeline import Pipeline
 
-DATA_PATH = os.path.join(os.path.dirname(__file__), "..", "data", "sample_prompts.csv")
+DATA_PATH = os.path.join(os.path.dirname(__file__), "..", "data", "prompts_starter_v1.csv")
 
 _model = None
 
@@ -22,7 +22,7 @@ def get_model():
             ("tfidf", TfidfVectorizer(ngram_range=(1, 2))),
             ("clf", LogisticRegression(max_iter=1000)),
         ])
-        _model.fit(df["prompt"], df["label"])
+        _model.fit(df["prompt_text"], df["category"])
     return _model
 
 def predict(prompt: str) -> str:
