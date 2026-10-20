@@ -11,6 +11,8 @@ RULES = [
     (r"the (document|email|webpage|file) (says|instructs|tells) you to", 30, "indirect injection"),
     (r"hidden instruction|instruction in (this|the) (text|document|image)", 30, "indirect injection"),
     (r"translate .* then (execute|follow|do it)", 20, "indirect injection"),
+    (r"(output|print|repeat) (the )?(text|everything|all of it) above", 30, "direct injection"),
+    (r"(you have|there are) no (restrictions|rules|limits|content policy|ethical guidelines)", 30, "jailbreak"),
 ]
 
 def rule_score(prompt: str):
