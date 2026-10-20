@@ -13,6 +13,7 @@ RULES = [
     (r"translate .* then (execute|follow|do it)", 20, "indirect injection"),
     (r"(output|print|repeat) (the )?(text|everything|all of it) above", 30, "direct injection"),
     (r"(you have|there are) no (restrictions|rules|limits|content policy|ethical guidelines)", 30, "jailbreak"),
+    (r"decode .*base64.*(follow|execute|obey|run)", 30, "jailbreak"),
 ]
 
 def rule_score(prompt: str):
